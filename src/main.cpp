@@ -11,7 +11,7 @@ int main() {
   while (!WindowShouldClose()) {
 
     BeginDrawing();
-    ClearBackground(DARKGREEN);
+    ClearBackground(GRAY);
     EndDrawing();
   }
   CloseWindow();
