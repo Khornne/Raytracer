@@ -1,19 +1,20 @@
+#include "color.h"
+#include "vec3.h"
 #include <iostream>
-#include <raylib.h>
 
 int main() {
-  const int screenWidth = 800;
-  const int screenHeight = 600;
+  int image_width = 256;
+  int image_height = 256;
 
-  InitWindow(screenWidth, screenHeight, "Window");
-  SetTargetFPS(60);
-
-  while (!WindowShouldClose()) {
-
-    BeginDrawing();
-    ClearBackground(GRAY);
-    EndDrawing();
+  // Render
+  std::cout << "P3\n" << image_width << ' ' << image_height << "\n255\n";
+  for (int j = 0; j < image_height; j++) {
+    std::clog << "\rLoading Image: " << (image_height - j) << ' ' << std::flush;
+    for (int i = 0; i < image_width; i++) {
+      auto pixel_color = color(double(i) / (image_width - 1),
+                               double(j) / (image_height - 1), 0);
+      write_color(std::cout, pixel_color);
+    }
   }
-  CloseWindow();
-  return 0;
+  std::clog << "\rDone.                            \n";
 }
